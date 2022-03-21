@@ -3,11 +3,11 @@
 require_once 'vendor/autoload.php';
 
 use classes\TelegramBot;
+use config\Settings;
 use \Dejurin\GoogleTranslateForFree;
 
-$token = '?';
-
-$telegram = new TelegramBot($token);
+$settings = new Settings();
+$telegram = new TelegramBot($settings->getToken());
 
 $update = $telegram->getWebhookUpdates();
 
@@ -15,7 +15,6 @@ $chat_id = $update['message']['chat']['id'] ?? '';
 $text = $update['message']['text'] ?? '';
 
 if ($text == '/start') {
-
     $response = $telegram->sendMessage([
         'chat_id' => $chat_id,
         'text' => 'Привет, готов переводить!',
