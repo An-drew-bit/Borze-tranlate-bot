@@ -4,14 +4,13 @@ namespace config;
 
 class Settings
 {
-    protected $token;
-
-    public function __construct()
-    {
-        $this->token = '?';
+    public function __construct(
+        protected string $token = '?'
+    )
+    {  
     }
 
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
